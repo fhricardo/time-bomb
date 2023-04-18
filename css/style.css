@@ -1,0 +1,93 @@
+@font-face {
+    font-family: SevenSeg;
+    src: url(../fonts/sevenseg.woff2);
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bomb {
+    width: 800px;
+    height: 400px;
+    background-image: url(../assets/bomb-body.png);
+    display: flex;
+}
+
+.display {
+    width: 320px;
+    height: 140px;
+    position: relative;
+    top: 130px;
+    left: 240px;
+}
+
+#greenLed {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 56px;
+    z-index: 99;
+}
+
+#redLed {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 56px;
+    right: 3px;
+    z-index: 99;
+}
+
+#rwl,
+#bwl,
+#rwr,
+#bwr {
+    position: fixed;
+}
+
+#rwl:hover,
+#bwl:hover,
+#rwr:hover,
+#bwr:hover {
+    cursor: url("../assets/plier.png"), auto;
+}
+
+#rwl {
+    top: 400px;
+    left: 595px;
+}
+
+#bwl {
+    top: 500px;
+    left: 595px;
+}
+
+#rwr {
+    top: 480px;
+    right: 600px;
+}
+
+#bwr {
+    top: 340px;
+    right: 597px;
+}
+
+
+#timer {
+    width: 320px;
+    height: 140px;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 72px;
+    font-weight: bold;
+    font-family: SevenSeg;
+    color: #343434;
+    /* text-shadow: 0px 0px 5px red; */
+}
