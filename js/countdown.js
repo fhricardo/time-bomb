@@ -17,6 +17,14 @@ function startTimer(duration, display) {
             gLed = "assets/led-green-off.png"
             document.getElementById("greenLed").src = gLed
         }
+        // Pisca Led Vermelho
+        if (timer % 2 == 1) {
+            rLed = "assets/led-red-on.png"
+            document.getElementById("redLed").src = rLed
+        } else {
+            rLed = "assets/led-red-off.png"
+            document.getElementById("redLed").src = rLed
+        }
     }, 1000);
 }
 window.onload = function () {
