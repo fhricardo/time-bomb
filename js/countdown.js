@@ -8,6 +8,7 @@ const greenLed = document.getElementById("greenLed");
 const bomb = document.getElementById('bomb');
 const explosion = document.getElementById('explosion');
 const message = document.getElementById('message');
+
 window.onload = function addEvents() {
     var maximo = 4;
     var i, arr = [];
@@ -28,28 +29,68 @@ window.onload = function addEvents() {
     bwr.setAttribute("onclick", "cutWire(" + arr[3] + ",'bwr')");
 }
 
+var time = 300;
+var speed = 1000;
+var minute;
+var second;
+var stopped;
+var stopTime;
+
+function countdown() {
+    if (stopped == undefined) {
+        if ((time - 1) >= -1) {
+            minute = parseInt(time / 60);
+            second = time % 60;
+            if (minute < 10) {
+                minute = "0" + minute;
+            }
+            if (second < 10) {
+                second = "0" + second;
+            }
+            if (second % 2 == 0) {
+                redLed.src = "assets/led-red-on.png"
+                greenLed.src = "assets/led-green-off.png"
+            } else {
+                redLed.src = "assets/led-red-off.png"
+                greenLed.src = "assets/led-green-on.png"
+            }
+            timer.innerHTML = minute + ":" + second;
+            if (minute == 0 && second == 0) {
+                bomb.setAttribute('class', 'hide');
+                redLed.setAttribute('class', 'hide');
+                greenLed.setAttribute('class', 'hide');
+                explosion.setAttribute('class', 'showExplosion');
+            }
+            setTimeout('countdown()', speed);
+            time--;
+
+        }
+    } if (stopped == 1) {
+        stopTime = minute + ":" + second;
+        timer.innerHTML = stopTime;
+    }
+}
+
+countdown();
+
 function cutWire(on, div) {
     switch (div) {
         case 'rwl':
-            console.log(div)
             rwlCut = "assets/red-wire-left-cut.png";
             rwl.src = rwlCut;
             rwl.setAttribute('onclick', "cutRWL(0)");
             break;
         case 'bwl':
-            console.log(div)
             bwlCut = "assets/black-wire-left-cut.png"
             bwl.src = bwlCut
             bwl.setAttribute('onclick', "cutBWL(0)")
             break;
         case 'rwr':
-            console.log(div)
             rwrCut = "assets/red-wire-right-cut.png"
             rwr.src = rwrCut
             rwr.setAttribute('onclick', "cutRWR(0)")
             break;
         case 'bwr':
-            console.log(div)
             bwrCut = "assets/black-wire-right-cut.png"
             bwr.src = bwrCut
             bwr.setAttribute('onclick', "cutBWR(0)")
@@ -72,40 +113,8 @@ function cutWire(on, div) {
             message.innerHTML = 'O timer acelerou, é melhor correr!'
             break;
         case 4:
+            stopped = 1;
             message.innerHTML = 'Você salvou o dia!'
             break;
     }
 }
-
-var time = 300;
-var speed = 1000;
-function countdown(value) {
-    if ((time - 1) >= -1) {
-        var minute = parseInt(time / 60);
-        var second = time % 60;
-        if (minute < 10) {
-            minute = "0" + minute;
-        }
-        if (second < 10) {
-            second = "0" + second;
-        }
-        if (second % 2 == 0) {
-            redLed.src = "assets/led-red-on.png"
-            greenLed.src = "assets/led-green-off.png"
-        } else {
-            redLed.src = "assets/led-red-off.png"
-            greenLed.src = "assets/led-green-on.png"
-        }
-        timer.innerHTML = minute + ":" + second;
-        if (minute == 0 && second == 0) {
-            bomb.setAttribute('class', 'hide');
-            redLed.setAttribute('class', 'hide');
-            greenLed.setAttribute('class', 'hide');
-            explosion.setAttribute('class', 'showExplosion');
-        }
-        console.log(minute + ":" + second);
-        setTimeout('countdown()', speed);
-        time--;
-    }
-}
-countdown();
