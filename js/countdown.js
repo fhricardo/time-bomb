@@ -8,6 +8,7 @@ const greenLed = document.getElementById("greenLed");
 const bomb = document.getElementById('bomb');
 const explosion = document.getElementById('explosion');
 const message = document.getElementById('message');
+const sound = document.getElementById('sound');
 
 window.onload = function addEvents() {
     var maximo = 4;
@@ -81,19 +82,19 @@ function cutWire(on, div) {
             rwl.setAttribute('onclick', "cutRWL(0)");
             break;
         case 'bwl':
-            bwlCut = "assets/black-wire-left-cut.png"
+            bwlCut = "assets/black-wire-left-cut.png";
             bwl.src = bwlCut
-            bwl.setAttribute('onclick', "cutBWL(0)")
+            bwl.setAttribute('onclick', "cutBWL(0)");
             break;
         case 'rwr':
-            rwrCut = "assets/red-wire-right-cut.png"
+            rwrCut = "assets/red-wire-right-cut.png";
             rwr.src = rwrCut
-            rwr.setAttribute('onclick', "cutRWR(0)")
+            rwr.setAttribute('onclick', "cutRWR(0)");
             break;
         case 'bwr':
-            bwrCut = "assets/black-wire-right-cut.png"
+            bwrCut = "assets/black-wire-right-cut.png";
             bwr.src = bwrCut
-            bwr.setAttribute('onclick', "cutBWR(0)")
+            bwr.setAttribute('onclick', "cutBWR(0)");
             break;
     }
     switch (on) {
@@ -102,19 +103,22 @@ function cutWire(on, div) {
             redLed.setAttribute('class', 'hide');
             greenLed.setAttribute('class', 'hide');
             message.setAttribute('class', 'hide');
+            sound.play();
             explosion.setAttribute('class', 'showExplosion');
             break;
         case 2:
             time = 300;
-            message.innerHTML = 'você ganhou mais tempo...'
+            message.innerHTML = 'você ganhou mais tempo...';
             break;
         case 3:
             speed = 500;
-            message.innerHTML = 'O timer acelerou, é melhor correr!'
+            message.innerHTML = 'O timer acelerou, é melhor correr!';
             break;
         case 4:
             stopped = 1;
-            message.innerHTML = 'Você salvou o dia!'
+            message.innerHTML = 'Você salvou o dia!';
+            redLed.src = "assets/led-red-off.png";
+            greenLed.src = "assets/led-green-on.png";
             break;
     }
 }
