@@ -7,15 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esquadrão Anti Bombas</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/countdown.js" defer></script>
 </head>
 
 <body>
-
-    <div class="bomb">
-        <img src="assets/red-wire-left.png" alt="" id="rwl">
-        <img src="assets/black-wire-left.png" alt="" id="bwl">
-        <img src="assets/red-wire-right.png" alt="" id="rwr">
-        <img src="assets/black-wire-right.png" alt="" id="bwr">
+    <div class="message">
+        <h1 id="message"></h1>
+    </div>
+    <div id="bomb" class="show">
+        <img src="assets/red-wire-left.png" alt="" id="rwl" onclick="cutRWL(1)">
+        <img src="assets/black-wire-left.png" alt="" id="bwl" onclick="cutBWL(1)">
+        <img src="assets/red-wire-right.png" alt="" id="rwr" onclick="cutRWR(1)">
+        <img src="assets/black-wire-right.png" alt="" id="bwr" onclick="cutBWR(1)">
         <div class="display">
             <img src="assets/led-green-off.png" alt="" id="greenLed">
             <img src="assets/led-red-off.png" alt="" id="redLed">
@@ -23,7 +26,9 @@
             <div id="timer"></div>
         </div>
     </div>
-    <script src="js/countdown.js"></script>
+    <div id="explosion" class="hide">
+    </div>
+
 </body>
 
 </html>
